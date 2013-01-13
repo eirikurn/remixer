@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Remixer</title>
+</head>
+<body>
+    <form data-bind="submit: search">
+        <input type="text" data-bind="value: searchQuery" />
+        <button type="submit" id="btnSearch">Search</button>
+    </form>
+    <ul data-bind="foreach: tracks">
+        <li>
+            <a href="#" data-bind="click: $root.selectTrack, text: title + ' - ' + user.username"></a>
+        </li>
+    </ul>
+
+    <br/>
+    <button data-bind="click: login">Login</button>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="//connect.soundcloud.com/2/latest.min.js"></script>
+    <script src="/js/sc.js"></script>
+    <script>
+        ko.applyBindings(new ScViewModel());
+    </script>
+</body>
+</html>

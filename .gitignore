@@ -1,0 +1,8 @@
+
+#Mr Developer
+.idea
+.DS_Store
+tmp
+.env
+node_modules
+

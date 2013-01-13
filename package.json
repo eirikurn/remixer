@@ -1,0 +1,15 @@
+{
+  "name": "Remixer",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "jade": "*",
+    "echonest": "0.0.3",
+    "request": "~2.12.0",
+    "lame": "~1.0.1"
+  }
+}

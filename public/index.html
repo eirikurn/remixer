@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Remixer, from Aranja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Aranja">
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body data-bind="event: { keydown: keydown }">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Remixer</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Mix</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-unit" data-bind="visible: !songs().length">
+            <h1>Remixer</h1>
+            <p>Is a guided music editor. It will analyze your track and help you make clean cuts and create the version you need.</p>
+            <p>Start by picking the track you want to edit.</p>
+            <div data-bind="visible: !loadingStatus()">
+                <input type="file" id="fileinput" name="track" />
+                <div id="filedrag">or just drop it here</div>
+            </div>
+
+            <div data-bind="if: loadingStatus()">
+                <div class="progress progress-striped active">
+                    <div class="bar" data-bind="style: { width: pc(Loader.progress()) }"></div>
+                </div>
+                <div>
+                    <span data-bind="text: loadingStatus"></span>...
+                </div>
+            </div>
+        </div>
+
+        <div data-bind="visible: songs().length">
+        <!-- ko foreach: songs -->
+            <h4 data-bind="text: name"></h4>
+            <div class="timeline" data-bind="event: { mousedown: mousedown, mousemove: mousemove, mouseup: mouseup, dblclick: dblclick }">
+                <div class="clip bg">
+                <!-- ko template: { foreach: sections, afterAdd: showSection } --><div class="clip" data-bind="style: { left: start * window.pxMinRatio() + 'px', width: duration * window.pxMinRatio() + 'px', background: $parent.colors[$data.color || $index()] }"></div><!-- /ko --></div>
+                <div class="waveform" data-bind="style: { backgroundImage: 'url(' + waveform + ')' }"></div>
+                <!-- ko foreach: beats -->
+                    <span class="beat" data-bind="style: { left: (start * window.pxMinRatio()) + 'px' }"></span>
+                <!-- /ko -->
+                <div class="selector" draggable="true" data-bind="style: { left: selection.left() + 'px', right: selection.right() + 'px' }, event: { dragstart: dragstart }"></div>
+                <div class="cursor" data-bind="visible: !!cursor(), style: { left: ((cursor() ? cursor().current() : 0) * window.pxMinRatio()) + 'px' }"></div>
+            </div>
+        <!-- /ko -->
+        <h3>Drag parts of your track into this box.<button class="btn pull-right" data-bind="click: exportMp3">Save as a MP3 file</button></h3>
+        <div class="timeline" data-bind="with: mix, event: { dragover: mix.dragover, drop: mix.drop }, click: setCursor">
+            <!-- ko foreach: clips --><div class="clip mix" data-bind="style: { left: start * window.pxMinRatio() + 'px', width: (duration * window.pxMinRatio()) + 'px' }"><div data-bind="style: { backgroundImage: 'url(' + song.waveform + ')', backgroundPositionX: '-' + (start * window.pxMinRatio()) + 'px' }"></div></div><!-- /ko -->
+            <div class="cursor" data-bind="visible: !!cursor(), style: { left: ((cursor() ? cursor().current() : 0) * window.pxMinRatio())  + 'px' }"></div>
+        </div>
+    </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/knockout.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/waveform.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/webaudio.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/track.js"></script>
+    <script src="js/song.js"></script>
+    <script src="js/mix.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+.timeline {
+    position: relative;
+    padding: 10px 0;
+    overflow: hidden;
+    height: 300px;
+    margin-bottom: 20px;
+
+    background-color: #eee;
+    border: 1px solid #696969;
+    border-radius: 5px;
+}
+
+.clip.bg {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.clip {
+    position: absolute;
+    height: 280px;
+
+
+    background: #7abcff;
+    background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee));
+    background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 );
+}
+
+.clip.mix {
+    position: static;
+    display: table-cell;
+}
+
+.clip div {
+    height: 280px;
+
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.clip:last-child div {
+    border: 0;
+}
+
+.selector {
+    position: absolute;
+    top: 0px;
+    height: 305px;
+
+    background-color: orange;
+    opacity: 0.4;
+}
+
+.beat, .cursor {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 1px;
+    height: 305px;
+
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.waveform {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 100%;
+    height: 280px;
+
+    background-size: 100% 280px;
+}
+
+.cursor {
+    background-color: red;
+}
+
+
+#filedrag
+{
+    font-weight: bold;
+    text-align: center;
+    padding: 1em 0;
+    margin: 1em 0;
+    color: #555;
+    border: 2px dashed #555;
+    border-radius: 7px;
+    cursor: default;
+}
+#filedrag.hover
+{
+    color: #f00;
+    border-color: #f00;
+    border-style: solid;
+    box-shadow: inset 0 3px 4px #888;
+}
