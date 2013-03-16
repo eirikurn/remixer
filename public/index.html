@@ -35,7 +35,7 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li class="active"><a href="#">Mix</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#about" data-toggle="modal">About</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,6 +82,51 @@
             <div class="cursor" data-bind="visible: !!cursor(), style: { left: ((cursor() ? cursor().current() : 0) * window.pxMinRatio())  + 'px' }"></div>
         </div>
     </div>
+    </div>
+
+    <div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+            <h3>About Remixer</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                We created an web app to remix songs. It is for people that are interested in
+                mixing together a few song quickly or just make a shorter version of one song.
+                To make the app simple to use, we gather information about the songs from
+                Echonest and give the user better hints and guidance from that information.
+            </p>
+            <p>
+                With this hack you can pick a mp3 file in your computer, remix it in the browser
+                and then download an mp3 file of the final mix.
+            </p>
+
+            <h3>Short Guide</h3>
+            <p>Start by picking a song that you want to remix from your computer.</p>
+            <p>
+                You will see two timelines, one at the top, filled with the waveform
+                of your song, and an empty one on the bottom.
+            </p>
+            <p>
+                After a while, a grid and a colored overlay should appear over your song's
+                waveform. These mark the bars and sections of your song, respectively, as analyzed automatically
+                by Echonest. These tend not to be very accurate, but with time their algorithms
+                should become smarter. We also plan to provide a UI to manually specify this.
+
+            </p>
+            <p>
+                You can click around any timeline and press space-bar to start playing. You
+                can also drag over a timeline to select a range. Notice that it snaps to the
+                bars of the song.
+            </p>
+            <p>
+                When you have selected a portion that you want to use, just drag it to the bottom
+                timeline. Keep doing this until your remix is ready. At that point, you can click
+                the "Save as a MP3 file" button to create a mp3 file with your mix.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
     </div>
 
     <script src="js/jquery.js"></script>
